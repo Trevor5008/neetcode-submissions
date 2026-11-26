@@ -1,0 +1,10 @@
+class Solution:
+    def subarraySum(self, nums: List[int], k: int) -> int:
+        pfxSums = {0: 1}
+        total, currSum = 0, 0
+        for r in range(len(nums)):
+            currSum += nums[r]
+            if currSum - k in pfxSums:
+                total += pfxSums.get(currSum - k) 
+            pfxSums[currSum] = pfxSums.get(currSum, 0) + 1
+        return total
